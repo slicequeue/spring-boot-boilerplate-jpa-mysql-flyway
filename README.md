@@ -1,10 +1,11 @@
 # Spring Boot API Boilerplate
 - slicequeue! spring boot api boilerplate 프로젝트
-  - JPA 적용, H2 데이터베이스 사용
+  - JPA 적용, MySQL 데이터베이스 사용 + flyway db 이력관리
+  - 테스트용 데이터베이스 H2 사용
 
 ## 구성
 Spring Boot RESTful API 전용 프로젝트
-+ JPA 적용, H2 데이터베이스 사용
++ JPA 적용, MySQL 데이터베이스 사용  + flyway db 이력관리, 테스트용 데이터베이스 H2 사용
 
 ### 폴더 구조
 - TBU
@@ -21,8 +22,10 @@ build.gradle 구성 내용 설명
   * spring-boot-starter-actuator
   * spring-boot-starter-data-jpa
 * database
-  * runtimeOnly com.h2database:h2 - 실행용 인메모리 H2
+  * implementation mysql:mysql-connector-java:8.0.28 - MySQL 커넥터
   * testRuntimeOnly com.h2database:h2 - 테스트용 인메모리 H2
+* DB version history & migration 
+  * org.flywaydb:flyway-mysql - mysql 8 이상
 * micrometer & prometheus
   * io.micrometer:micrometer-registry-prometheus:1.8.4
 * logback & log4j 취약점 대응
@@ -54,3 +57,7 @@ build.gradle 구성 내용 설명
   * 기본 설정값 관련해서는 예시용으로 작성한 logback-local.xml `local` 로 설정해야 작동
 * JUnit 테스트 실행시에는 test.java.resources 부분에 application.yml 설정 적용되며
   * 각 테스트에 ActiveProfile 어노테이션으로 `test` 로 지정함
+
+### FLYWAY 적용
+main.resources.db.migration 내에 버전 파일 생성하여 적용
+참고: https://www.notion.so/Spring-Boot-JPA-FLYWAY-I-c748269048d940f887f4907e12b37df5?pvs=4
