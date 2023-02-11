@@ -29,6 +29,9 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	testRuntimeOnly 'com.h2database:h2'
 
+	/* --- flyway --- */
+	implementation 'org.flywaydb:flyway-mysql'
+
 	/* --- 추가 --- */
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus:1.9.5'
